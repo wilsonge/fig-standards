@@ -1,20 +1,15 @@
 Event Manager interfaces
 ========================
 
-Event Dispatching allows developer to inject logic into an application easily.
-Many frameworks implement some form of a event dispatching that allows users to
-inject functionality with the need to extend classes.
+Event Dispatching allows developer to inject logic into an application easily. Many frameworks implement some form of a event dispatching that allows users to inject functionality with the need to extend classes.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119][].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119][].
 
 [RFC 2119]: http://tools.ietf.org/html/rfc2119
 
 ## Goal
 
-Having common interfaces for dispatching and handling events, allows developers to
-create libraries that can interact with many frameworks in a common fashion.
+Having common interfaces for dispatching and handling events, allows developers to create libraries that can interact with many frameworks in a common fashion.
 
 Some examples:
 
@@ -24,12 +19,9 @@ Some examples:
 
 ## Terms
 
-*   **Event** - An action that about to take place (or has taken place).  The event name MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that
-words in event names be separated using '.' ex. 'foo.bar.baz.bat'
+*   **Event** - An action that about to take place (or has taken place).  The event name MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that words in event names be separated using '.' ex. 'foo.bar.baz.bat'
 
-*   **Listener** - A list of callbacks that are passed the EventInterface and MAY return a result.
-Listeners MAY be attached to the EventManager with a priority.  Listeners MUST BE called based on
-priority.
+*   **Listener** - A list of callbacks that are passed the EventInterface and MAY return a result. Listeners MAY be attached to the EventManager with a priority.  Listeners MUST BE called based on priority.
 
 ## Components
 
@@ -40,13 +32,9 @@ There are 2 interfaces needed for dispatching events:
 
 ### EventInterface
 
-The EventInterface defines the methods needed to dispatch an event.  Each event MUST contain a event
-name in order trigger the listeners. Each event MAY have a target which is an object that is the context
-the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the
-event.
+The EventInterface defines the methods needed to dispatch an event.  Each event MUST contain a event name in order trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
 
-The event MUST contain a propegation flag that singles the EventManager to stop passing along the event
-to other listeners.
+The event MUST contain a propegation flag that singles the EventManager to stop passing along the event to other listeners.
 
 ```php
 
@@ -82,7 +70,7 @@ interface EventInterface
 
 ### EventDispatcherInterfaceInterface
 
-The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the EventDispatcherInterface  MUST return the result from the last listener.
+The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the EventDispatcherInterface MUST return the result from the last listener.
 
 ```php
 
