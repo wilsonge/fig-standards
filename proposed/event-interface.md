@@ -24,8 +24,7 @@ Some examples:
 
 ## Terms
 
-*   **Event** - An action that about to take place (or has taken place).  The event name
-MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that
+*   **Event** - An action that about to take place (or has taken place).  The event name MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that
 words in event names be separated using '.' ex. 'foo.bar.baz.bat'
 
 *   **Listener** - A list of callbacks that are passed the EventInterface and MAY return a result.
