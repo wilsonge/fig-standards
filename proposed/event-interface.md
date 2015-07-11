@@ -20,7 +20,7 @@ The EventInterface defines the methods needed to dispatch an event.  Each event 
 
 The event MUST contain a propegation flag that singles the EventManager to stop passing along the event to other listeners.
 
-### 1.3 EventDispatcherInterfaceInterface
+### 1.3 EventDispatcherInterface
 
 The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the EventDispatcherInterface MUST return the result from the last listener.
 
