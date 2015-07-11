@@ -10,13 +10,13 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 1. Specification
 ### 1.1 Terms
 
-*   **Event** - An action that about to take place (or has taken place).  The event name MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that words in event names be separated using '.' ex. 'foo.bar.baz.bat'
-*   **Listener** - A list of callbacks that are passed the EventInterface and MAY return a result. Listeners MAY be attached to the ```EventDispatcher``` with a priority.  Listeners MUST BE called based on priority.
+*   **Event** - An action that is about to take place (or has taken place).  The event name MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that words in event names be separated using '.' (example 'foo.bar.baz.bat').
+*   **Listener** - A list of callbacks that are passed to the EventInterface and MAY return a result. Listeners MAY be attached to the ```EventDispatcher``` with a priority.  Listeners MUST be called based on priority.
 
 ### 1.2 EventInterface
 
-* The ```EventInterface``` defines the methods needed to dispatch an event.  Each event MUST contain a event name in order trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
-* The Event MUST contain a propegation flag that singles the ```EventDispatcher``` to stop passing along the event to other listeners.
+* The ```EventInterface``` defines the methods needed to dispatch an event.  Each event MUST contain an event name in order to trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
+* The Event MUST contain a propagation flag that signals the ```EventDispatcher``` to stop passing the event along to other listeners.
 * The Event can OPTIONALLY be immutable. For this reason there are no set methods in the interface.
 
 ### 1.3 EventDispatcherInterface
