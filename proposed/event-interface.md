@@ -15,18 +15,18 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### 1.2 EventInterface
 
-* The EventInterface defines the methods needed to dispatch an event.  Each event MUST contain a event name in order trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
-* The event MUST contain a propegation flag that singles the EventManager to stop passing along the event to other listeners.
-* The EventInterface doesn't contain an accept method to allow immutability of the Event object.
+* The ```EventInterface``` defines the methods needed to dispatch an event.  Each event MUST contain a event name in order trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
+* The Event MUST contain a propegation flag that singles the ```EventManager``` to stop passing along the event to other listeners.
+* The ```EventInterface``` doesn't contain an accept method to allow immutability of the Event object.
 
 ### 1.3 EventDispatcherInterface
 
-* The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the EventDispatcherInterface MUST return the EventInterface from the last listener.
+* The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the ```EventDispatcherInterface``` MUST return the ```EventInterface``` from the last listener.
 
 ### 1.4 Helper classes and interfaces
 
-* The Psr\EventDispatcher\DispatcherAwareInterface only contains a setDispatcher(EventDispatcherInterface $dispatcher) method and can be used by frameworks to auto-wire arbitrary instances with a logger.
-* The Psr\Log\DispatcherAwareTrait trait can be used to implement the equivalent interface easily in any class. It gives you access to ```$this->dispatcher```.
+* The ```Psr\EventDispatcher\DispatcherAwareInterface``` only contains a ```setDispatcher(EventDispatcherInterface $dispatcher)``` method and can be used by frameworks to auto-wire arbitrary instances with a dispatcher.
+* The ```Psr\Log\DispatcherAwareTrait``` trait can be used to implement the equivalent interface easily in any class. It gives you access to ```$this->dispatcher```.
 
 ## 2. EventDispatcherInterface
 
