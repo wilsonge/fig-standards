@@ -26,7 +26,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### 1.4 Helper classes and interfaces
 
 * The Psr\EventDispatcher\DispatcherAwareInterface only contains a setDispatcher(EventDispatcherInterface $dispatcher) method and can be used by frameworks to auto-wire arbitrary instances with a logger.
-* The Psr\Log\DispatcherAwareTrait trait can be used to implement the equivalent interface easily in any class. It gives you access to $this->dispatcher.
+* The Psr\Log\DispatcherAwareTrait trait can be used to implement the equivalent interface easily in any class. It gives you access to ```$this->dispatcher```.
 
 ## 2. EventDispatcherInterface
 
