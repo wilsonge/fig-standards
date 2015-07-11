@@ -48,7 +48,7 @@ interface EventDispatcherInterface
      *
      * @return bool true on success false on failure
      */
-    public function addListener($eventName, $callback, $priority = 0);
+    public function addListener($eventName, callable $callback, $priority = 0);
 
     /**
      * Removes an event listener from the specified events.
@@ -58,7 +58,7 @@ interface EventDispatcherInterface
      *
      * @return void
      */
-    public function removeListener($eventName, $listener);
+    public function removeListener($eventName, callable $listener);
 
     /**
      * Dispatches an event to all registered listeners.
