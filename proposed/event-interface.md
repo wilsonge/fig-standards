@@ -1,11 +1,11 @@
 Event Manager interfaces
 ========================
 
-Event Dispatching allows developer to inject logic into an application easily. Many frameworks implement some form of a event dispatching that allows users to optionally inject functionality into the library or application.
+This document describes a common interface for creating events and event dispatchers.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119][].
+The main goal is to allow libraries to receive a Psr\EventDispatcher\EventInterface object and allows users to optionally inject functionality into the library or application. Frameworks and CMSs that have custom needs MAY extend the interface for their own purpose, but SHOULD remain compatible with this document.
 
-[RFC 2119]: http://tools.ietf.org/html/rfc2119
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
 ## 1. Specification
 ### 1.1 Terms
@@ -16,19 +16,19 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### 1.2 EventInterface
 
-The EventInterface defines the methods needed to dispatch an event.  Each event MUST contain a event name in order trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
-
-The event MUST contain a propegation flag that singles the EventManager to stop passing along the event to other listeners.
+* The EventInterface defines the methods needed to dispatch an event.  Each event MUST contain a event name in order trigger the listeners. Each event MAY have a target which is an object that is the context the event is being triggered for. OPTIONALLY the event can have additional parameters for use within the event.
+* The event MUST contain a propegation flag that singles the EventManager to stop passing along the event to other listeners.
+* The EventInterface doesn't contain an accept method to allow immutability of the Event object.
 
 ### 1.3 EventDispatcherInterface
 
-The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the EventDispatcherInterface MUST return the result from the last listener.
+* The EventDispatcherInterface holds all the listeners for a particular event.  Since an event can have many listeners that each return a result, the EventDispatcherInterface MUST return the EventInterface from the last listener.
 
 ### 1.4 Helper classes and interfaces
 
-The Psr\EventDispatcher\DispatcherAwareInterface only contains a setDispatcher(EventDispatcherInterface $dispatcher) method and can be used by frameworks to auto-wire arbitrary instances with a logger.
+* The Psr\EventDispatcher\DispatcherAwareInterface only contains a setDispatcher(EventDispatcherInterface $dispatcher) method and can be used by frameworks to auto-wire arbitrary instances with a logger.
 
-The Psr\Log\DispatcherAwareTrait trait can be used to implement the equivalent interface easily in any class. It gives you access to $this->dispatcher.
+* The Psr\Log\DispatcherAwareTrait trait can be used to implement the equivalent interface easily in any class. It gives you access to $this->dispatcher.
 
 ## 2. EventDispatcherInterface
 
@@ -106,5 +106,16 @@ interface EventInterface
      * @return bool
      */
     public function isPropagationStopped();
+
+    /**
+     * Get argument by key.
+     *
+     * @param string $key An identifying key.
+     *
+     * @throws \InvalidArgumentException If key is not found.
+     *
+     * @return mixed Contents of array key.
+     */
+    public function getArgument($key);
 }
 ```
