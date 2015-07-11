@@ -11,7 +11,6 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### 1.1 Terms
 
 *   **Event** - An action that about to take place (or has taken place).  The event name MUST only contain the characters `A-Z`, `a-z`, `0-9`, `_`, and '.'. It is RECOMMENDED that words in event names be separated using '.' ex. 'foo.bar.baz.bat'
-
 *   **Listener** - A list of callbacks that are passed the EventInterface and MAY return a result. Listeners MAY be attached to the EventManager with a priority.  Listeners MUST BE called based on priority.
 
 ### 1.2 EventInterface
@@ -27,7 +26,6 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### 1.4 Helper classes and interfaces
 
 * The Psr\EventDispatcher\DispatcherAwareInterface only contains a setDispatcher(EventDispatcherInterface $dispatcher) method and can be used by frameworks to auto-wire arbitrary instances with a logger.
-
 * The Psr\Log\DispatcherAwareTrait trait can be used to implement the equivalent interface easily in any class. It gives you access to $this->dispatcher.
 
 ## 2. EventDispatcherInterface
