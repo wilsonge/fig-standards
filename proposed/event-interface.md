@@ -43,10 +43,10 @@ interface EventDispatcherInterface
      * Attaches a listener to an event
      *
      * @param string   $eventName The event to remove a listener from
-     * @param callable $callback a callable function
-     * @param int      $priority the priority at which the $callback executed
+     * @param callable $callback  A callable function
+     * @param int      $priority  The priority at which the $callback executed
      *
-     * @return bool true on success false on failure
+     * @return bool
      */
     public function addListener($eventName, callable $callback, $priority = 0);
 
@@ -63,13 +63,14 @@ interface EventDispatcherInterface
     /**
      * Dispatches an event to all registered listeners.
      *
-     * @param EventInterface  $event  The event to pass to the event handlers/listeners.
+     * @param string         $name  The name of the event to dispatch. The name of the event is
+     *                              the name of the method that is invoked on listeners.
+     * @param EventInterface $event The event to pass to the event handlers/listeners.
+     *                              If not supplied, an empty EventInterface instance is created.
      *
      * @return EventInterface
-     *
-     * @api
      */
-    public function dispatch(EventInterface $event = null);
+    public function dispatch($name, EventInterface $event = null);
 }
 ```
 
@@ -92,9 +93,9 @@ interface EventInterface
     public function getName();
 
     /**
-     * Indicate whether or not to stop propagating this event
+     * Stops the propagation of the event to further event listeners.
      *
-     * @param  bool $flag
+     * @return void
      */
     public function stopPropagation();
 
@@ -110,10 +111,19 @@ interface EventInterface
      *
      * @param string $key An identifying key.
      *
-     * @throws \InvalidArgumentException If key is not found.
-     *
      * @return mixed Contents of array key.
+     * @throws \InvalidArgumentException If key is not found.
      */
     public function getArgument($key);
+
+    /**
+     * Add argument to event.
+     *
+     * @param string $key   Argument name.
+     * @param mixed  $value Value.
+     *
+     * @return EventInterface
+     */
+    public function setArgument($key, $value)
 }
 ```
