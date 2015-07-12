@@ -115,15 +115,5 @@ interface EventInterface
      * @throws \InvalidArgumentException If key is not found.
      */
     public function getArgument($key);
-
-    /**
-     * Add argument to event.
-     *
-     * @param string $key   Argument name.
-     * @param mixed  $value Value.
-     *
-     * @return EventInterface
-     */
-    public function setArgument($key, $value)
 }
 ```
