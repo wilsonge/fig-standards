@@ -51,16 +51,6 @@ interface EventDispatcherInterface
     public function addListener($eventName, callable $callback, $priority = 0);
 
     /**
-     * Removes an event listener from the specified events.
-     *
-     * @param string   $eventName The event to remove a listener from
-     * @param callable $listener  The listener to remove
-     *
-     * @return void
-     */
-    public function removeListener($eventName, callable $listener);
-
-    /**
      * Dispatches an event to all registered listeners.
      *
      * @param string         $name  The name of the event to dispatch. The name of the event is
@@ -71,6 +61,16 @@ interface EventDispatcherInterface
      * @return EventInterface
      */
     public function dispatch($name, EventInterface $event = null);
+
+    /**
+     * Removes an event listener from the specified events.
+     *
+     * @param string   $eventName The event to remove a listener from
+     * @param callable $listener  The listener to remove
+     *
+     * @return void
+     */
+    public function removeListener($eventName, callable $listener);
 }
 ```
 
@@ -86,18 +86,21 @@ namespace Psr\EventDispatcher;
 interface EventInterface
 {
     /**
+     * Get argument by key.
+     *
+     * @param string $key An identifying key.
+     *
+     * @return mixed Contents of array key.
+     * @throws \InvalidArgumentException If key is not found.
+     */
+    public function getArgument($key);
+
+    /**
      * Get event name
      *
      * @return string
      */
     public function getName();
-
-    /**
-     * Stops the propagation of the event to further event listeners.
-     *
-     * @return void
-     */
-    public function stopPropagation();
 
     /**
      * Has this event indicated event propagation should stop?
@@ -107,13 +110,10 @@ interface EventInterface
     public function isPropagationStopped();
 
     /**
-     * Get argument by key.
+     * Stops the propagation of the event to further event listeners.
      *
-     * @param string $key An identifying key.
-     *
-     * @return mixed Contents of array key.
-     * @throws \InvalidArgumentException If key is not found.
+     * @return void
      */
-    public function getArgument($key);
+    public function stopPropagation();
 }
 ```
