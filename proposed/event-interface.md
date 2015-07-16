@@ -117,3 +117,24 @@ interface EventInterface
     public function stopPropagation();
 }
 ```
+
+## 4. DispatcherAwareInterface
+
+```
+namespace Psr\EventDispatcher;
+
+/**
+ * Interface to be implemented by classes depending on a dispatcher.
+ */
+interface DispatcherAwareInterface
+{
+	/**
+	 * Set the dispatcher to use.
+	 *
+	 * @param   DispatcherInterface  $dispatcher  The dispatcher to use.
+	 *
+	 * @return  null
+	 */
+	public function setDispatcher(DispatcherInterface $dispatcher);
+}
+```
