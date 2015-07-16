@@ -120,7 +120,8 @@ interface EventInterface
 
 ## 4. DispatcherAwareInterface
 
-```
+```php
+
 namespace Psr\EventDispatcher;
 
 /**
